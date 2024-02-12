@@ -42,8 +42,12 @@ public class TransactionEvents {
 
             // Guardar la factura actualizada en la base de datos
             _dao.save(existingInvoice);
+            
         } else {
-            log.warn("La factura con ID " + event.getIdInvoice() + " no se encontró en la base de datos.");
+            double amount = event.getAmount;
+            Integer state = amount < 0 ? 1 : 0;
+            event.setState(state);
+            _dao.save(event);    
         }
         
     }
